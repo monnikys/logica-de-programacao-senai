@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Estoque</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .mensagem {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .entrada {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .saida {
+            background-color: #f8d7da;
+            color: #b91627;
+        }
+
+        .saldo {
+            background-color: #fff3cd;
+            color: #856404;
+            font-weight: bold;
+        }
+
+        .encerrado {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+<h1>Cadastro de Estoque</h1>
+<script>
+    // Mensagem fixa que não muda nunca → podemos usar const
+    const mensagemEncerrado = "Sistema Encerrado! <br>";
+
+    // O saldo inicial vai mudar (entradas e saídas) → let
+    let saldo = parseInt(prompt("Informe o saldo inicial:"));
+    document.write("<div class='mensagem saldo'>Saldo inicial: " + saldo + "</div>"); // document.write escreve na página
+
+    // Essa variável controla se o sistema continua ou não → let
+    let encerrar = "N"; // inicializada com "N" para entrar no loop
+
+    // Enquanto o usuário não quiser encerrar
+    while (encerrar.toUpperCase() === "N") { // toUpperCase() para aceitar 'n' ou 'N'
+
+        // Tipo e quantidade mudam a cada operação → let
+        let tipo;
+        do { // loop para garantir que o tipo seja 1 ou 2
+            tipo = parseInt(prompt("Digite 1 para Entrada ou 2 para Saída:")); //parseInt converte string para inteiro
+            if (tipo !== 1 && tipo !== 2) { // !== é diferente de
+                alert("Tipo inválido! Digite 1 para Entrada ou 2 para Saída."); // alert mostra uma mensagem na tela
+            }
+        // enquanto o tipo for diferente de 1 e diferente de 2, repete o loop
+        // ou seja, só sai do loop se for 1 ou 2
+        } while (tipo !== 1 && tipo !== 2); // repete até o tipo ser válido    
+
+        let quantidade;
+        do {
+            quantidade = parseInt(prompt("Informe a quantidade:")); // quantidade também muda a cada operação
+            if (isNan(quantidade) || quantidade <= 0) { // isNaN verifica se não é número // <= é menor ou igual a 0
+                alert("Quantidade inválida! Digite um valor positivo.");
+            }
+        } while (isNaN(quantidade) || quantidade <= 0); // repete até a quantidade ser válida
+
+
+        if (tipo === 1) { // === é o mesmo que igual a
+            saldo += quantidade; // entrada no estoque // (+= é o mesmo que saldo = saldo + quantidade)
+            document.write("<div class='mensagem entrada'>Entrada: " + quantidade + "</div>"); // <div> é quebra de linha
+        }
+
+        if (tipo === 2) {
+            if (saldo >= quantidade) { // verifica se tem saldo suficiente para saída (>= é maior ou igual a)
+                saldo -= quantidade; // saída no estoque (-= é o mesmo que saldo = saldo - quantidade)
+                document.write("<div class='mensagem saida'>Saída: " + quantidade + "</div>"); // class é a classe CSS
+            } else {
+                document.write("<div class='mensagem saida'>Saldo insuficiente</div>");
+                alert("Saldo insuficiente"); //alert mostra uma mensagem na tela
+            }
+        }
+
+        document.write("<div class='mensagem saldo'>Saldo atual: " + saldo + "</div>");
+
+        // Pergunta se deseja encerrar (S/N)
+        encerrar = prompt("Deseja encerrar? (S/N)");
+    }
+
+    // Aqui usamos a constante, que não muda nunca
+    document.write("<div class='encerrado'>" + mensagemEncerrado + "Saldo final: " + saldo + "</div>"); // mostra a mensagem de encerrado
+</script>
+</body>
+</html>
