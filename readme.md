@@ -53,7 +53,7 @@ Continuar? (S/N) → Se N, volta ao Loop
   ↓
 Sistema Encerrado + Saldo Final
 ```
-![Fluxograma](/Fluxograma-Logica-Estoque-Senai%20_%20Mermaid%20Chart-2025-08-29-014842.png)
+![Fluxograma](/Fluxograma-Logica-Estoque-Senai.png)
 
 ## 💻 Tecnologias Utilizadas
 
