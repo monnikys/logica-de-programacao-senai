@@ -108,7 +108,7 @@ Saldo final: 120
 
 1. Faça o download do arquivo `estoque.html`
 2. Abra o arquivo em qualquer navegador web moderno
-3. Siga as instruções na tela
+3. Siga as instruções na tela 
 
 ---
 
